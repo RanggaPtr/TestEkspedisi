@@ -16,6 +16,19 @@ public class Pengiriman {
         };
         String username = "", password;
         boolean isLogin = true;
+
+        String[] detailPengiriman = {
+            "Kode Pengiriman",
+            "Nama Pengirim",
+            "Nama Penerima",
+            "Tanggal Kirim",
+            "Tanggal Terima",
+            "Alamat Pengiriman",
+            "Status Paket",
+            "Berat Paket",
+            "Tujuan Pengiriman",
+            "Total Harga"
+        };
         
         //Variabel Pengiriman
         String[][] pengiriman = {
@@ -25,18 +38,19 @@ public class Pengiriman {
             "08-09-2023",
             null,
             "\nJl. Plaza Boulevard Jl. Pemuda No.33 - 37,\nEmbong Kaliasin, Kec. Genteng, Surabaya,\nJawa Timur 60271",
-            "MSUR",
             "Dikirim",
-            "Trenggalek",},
+            "2",
+            "Surabaya",
+            "Sumber Pocung",},
             {"REG123",
             "Jono",
             "Joko",
             "08-10-2023",
             "08-15-2023",
-            "\nJl. Raya,\nRangkah Kidul, Kec. Sidoarjo, Kabupaten Sidoarjo,\nJawa Timur 61232",
-            "MJAK",
-            "Dikirim",
-            "Kepanjen",}
+            "\nJl. Raya,\nRangkah Kidul, Kec. Kediri, Kabupaten Kediri,\nJawa Timur 61232",
+            "Selesai",
+            "Kediri",
+            "Sampai Tujuan",}
         };
         String[][] malang = {
             {"Hemat","5000", "", "10000"},
@@ -47,6 +61,7 @@ public class Pengiriman {
         boolean checkRole = true;
         System.out.print("\033[H\033[2J");
         while (checkRole) {
+            System.out.print("\033[H\033[2J");
             System.out.print(
                 "Selamat Datang di Sistem Pengiriman\nMasuk sebagai : \n1.Admin\n2.Petugas\n3.Keluar\n"
             );
@@ -59,6 +74,7 @@ public class Pengiriman {
                     boolean isLoginAdmin = false;
                     System.out.print("\033[H\033[2J");
                     while (isLogin) {
+                        System.out.print("\033[H\033[2J");
                         System.out.println("Login Admin");
                         System.out.print("Username: ");
                         username = input.nextLine();
@@ -81,6 +97,7 @@ public class Pengiriman {
 
                     System.out.print("\033[H\033[2J");
                     while (isLoginAdmin) {
+                        System.out.print("\033[H\033[2J");
                         System.out.println(
                         "Menu Admin\n1. Manajemen Petugas\n2. Manajemen Pengiriman\n3. Laporan Pengiriman\n4. Back\n5. Keluar"
                         );
@@ -93,6 +110,7 @@ public class Pengiriman {
                                 boolean isManagePetugas = true;
                                 System.out.print("\033[H\033[2J");
                                 while (isManagePetugas) {
+                                    System.out.print("\033[H\033[2J");
                                     System.out.println(
                                         "Menu Manajemen Petugas\n1. Input Data Petugas\n2. Edit Data Petugas\n3. Hapus Data Petugas\n4. Back"
                                     );
@@ -105,6 +123,7 @@ public class Pengiriman {
                                         case "1":
                                         System.out.print("\033[H\033[2J");
                                         while (isMenuPetugas) {
+                                            System.out.print("\033[H\033[2J");
                                             System.out.println("=============================================================");
                                             System.out.printf("%-5s|%-15s|%-15s|%-15s|%-15s\n", "ID", "Nama", "Username", "Password", "Role");
                                             System.out.println("=============================================================");
@@ -112,7 +131,7 @@ public class Pengiriman {
                                                 System.out.printf("%-5s|%-15s|%-15s|%-15s|%-5s\n", user[0], user[1], user[2], user[3], user[4]);
                                             }
                                             System.out.println("=============================================================");
-                                            System.out.println("Tambah Data Petugas ");
+                                            System.out.println("Input Data Petugas ");
                                             System.out.println("=============================================================");
                                             System.out.print("Nama Lengkap : ");
                                             String nama = input.nextLine();
@@ -122,20 +141,21 @@ public class Pengiriman {
                                             String passwordInput = input.nextLine();
 
                                             String tambahPetugas[][] = new String[userPetugas.length + 1][5];
-                                            int idPetugas = 2;
                                             
                                             for (int i = 0; i < userPetugas.length; i++) {
                                                 tambahPetugas[i] = userPetugas[i];
                                             }
                                             
                                             for (int i = userPetugas.length; i < tambahPetugas.length; i++) {
-                                                idPetugas++;
+                                                int idPetugas = 2;
+                                                int newId = ++idPetugas;
                                                 tambahPetugas[i] = new String[5];
-                                                tambahPetugas[i][0] = "PTG"+String.valueOf(idPetugas);
+                                                tambahPetugas[i][0] = "PTG"+String.valueOf(newId);
                                                 tambahPetugas[i][1] = nama;
                                                 tambahPetugas[i][2] = usernameInput;
                                                 tambahPetugas[i][3] = passwordInput;
                                                 tambahPetugas[i][4] = "Petugas";
+                                                idPetugas = newId;
                                             }
                                             userPetugas = tambahPetugas;
                                             System.out.println("=============================================================");
@@ -151,11 +171,207 @@ public class Pengiriman {
                                                 isMenuPetugas = false;
                                             }
                                         }
+                                        break;
+                                        case "2":
+                                        System.out.print("\033[H\033[2J");
+                                        while (isMenuPetugas) {
+                                            System.out.print("\033[H\033[2J");
+                                            System.out.println("=============================================================");
+                                            System.out.printf("%-5s|%-15s|%-15s|%-15s|%-15s\n", "ID", "Nama", "Username", "Password", "Role");
+                                            System.out.println("=============================================================");
+                                            for (String[] user : userPetugas) {
+                                                System.out.printf("%-5s|%-15s|%-15s|%-15s|%-5s\n", user[0], user[1], user[2], user[3], user[4]);
+                                            }
+                                            System.out.println("=============================================================");
+                                            System.out.print("Petugas Yang Ingin Di Edit : ");
+                                            String oldIndex = input.nextLine();
+                                            System.out.println("=============================================================");
+                                            System.out.println("Edit Data Petugas ");
+                                            System.out.println("=============================================================");
+
+                                            int index = 0;
+                                            for (int i = 0; i < userPetugas.length; i++) {
+                                                if (userPetugas[i][0].equals(oldIndex)) {
+                                                    index = i;
+                                                }
+                                            }
+
+                                            String editPetugas[] = userPetugas[index];
+                                            System.out.print("ID Petugas : ");
+                                            String kode = input.nextLine();
+                                            System.out.print("Nama Lengkap : ");
+                                            String nama = input.nextLine();
+                                            System.out.print("Username : ");
+                                            String usernameInput = input.nextLine();
+                                            System.out.print("Password : ");
+                                            String passwordInput = input.nextLine();
+
+                                            editPetugas[0] = kode;
+                                            editPetugas[1] = nama;
+                                            editPetugas[2] = usernameInput;
+                                            editPetugas[3] = passwordInput;
+                                            editPetugas[4] = "Petugas";
+
+                                            System.out.println("=============================================================");
+                                            System.out.printf("%-5s|%-15s|%-15s|%-15s|%-15s\n", "ID", "Nama", "Username", "Password", "Role");
+                                            System.out.println("=============================================================");
+                                            for (String[] user : userPetugas) {
+                                                System.out.printf("%-5s|%-15s|%-15s|%-15s|%-5s\n", user[0], user[1], user[2], user[3], user[4]);
+                                            }
+                                            System.out.println("=============================================================");
+                                            System.out.print("Kembali ke menu (y)? ");
+                                            String ulang = input.nextLine();
+                                            if (ulang.equalsIgnoreCase("y")) {
+                                                isMenuPetugas = false;
+                                            }
+                                        }
+                                        break;
+                                        case "3":
+                                        System.out.print("\033[H\033[2J");
+                                        while (isMenuPetugas) {
+                                            System.out.print("\033[H\033[2J");
+                                            System.out.println("=============================================================");
+                                            System.out.printf("%-5s|%-15s|%-15s|%-15s|%-15s\n", "ID", "Nama", "Username", "Password", "Role");
+                                            System.out.println("=============================================================");
+                                            for (String[] user : userPetugas) {
+                                                System.out.printf("%-5s|%-15s|%-15s|%-15s|%-5s\n", user[0], user[1], user[2], user[3], user[4]);
+                                            }
+                                            System.out.println("=============================================================");
+                                            System.out.print("Petugas Yang Ingin Di Hapus : ");
+                                            String oldIndex = input.nextLine();
+
+                                            String hapusUser[][] = new String[userPetugas.length -
+                                            1][5];
+                                            int index = 0;
+
+                                            for (int i = 0; i < userPetugas.length; i++) {
+                                            if (userPetugas[i][0].equals(oldIndex)) continue;
+                                                hapusUser[index] = userPetugas[i];
+                                                index++;
+                                            }
+                                            userPetugas = hapusUser;
+
+                                            System.out.println("=============================================================");
+                                            System.out.printf("%-5s|%-15s|%-15s|%-15s|%-15s\n", "ID", "Nama", "Username", "Password", "Role");
+                                            System.out.println("=============================================================");
+                                            for (String[] user : userPetugas) {
+                                                System.out.printf("%-5s|%-15s|%-15s|%-15s|%-5s\n", user[0], user[1], user[2], user[3], user[4]);
+                                            }
+                                            System.out.println("=============================================================");
+                                            System.out.print("Kembali ke menu (y)? ");
+                                            String ulang = input.nextLine();
+                                            if (ulang.equalsIgnoreCase("y")) {
+                                                isMenuPetugas = false;
+                                            }
+                                        }
+                                        break;
+                                        case "4":
+                                            isManagePetugas = false;
+                                        break;
+                                        default:
+                                            System.out.println("\nInput Menu tidak valid\n");
+                                        break;
                                     }
                                 }
                                 break;
                             case "2":
-                                System.out.println("Manajemen Pengiriman");
+                                boolean isManagePengiriman = true;
+                                System.out.print("\033[H\033[2J");
+                                while (isManagePengiriman) {
+                                    System.out.print("\033[H\033[2J");
+                                    System.out.println("Menu Manajemen Pengiriman\n1. Menu Data Pengiriman\n2. Lacak Pengiriman\n3. Manajemen Lokasi Tujuan\n4. Back");
+
+                                    System.out.print("Pilih Menu Manajemen Pengiriman : ");
+                                    pilihMenuAdmin = input.nextLine();
+
+                                    switch (pilihMenuAdmin) {
+                                        case "1":
+                                            boolean isCrudPengiriman = true;
+                                            System.out.print("\033[H\033[2J");
+                                            while (isCrudPengiriman) {
+                                                System.out.print("\033[H\033[2J");
+                                                System.out.println("List Menu Data Pengiriman\n1. Input Data Pengiriman\n2. Cetak resi Paket\n3. Ganti Status Paket\n4. Back");
+
+                                                System.out.print("Pilih Menu Data Pengiriman : ");
+                                                String PilihMenuDataPengiriman = input.nextLine();
+
+                                                switch (PilihMenuDataPengiriman) {
+                                                    case "1":
+                                                        System.out.println("input data pengiriman");
+                                                        break;
+                                                    case "2":
+                                                        boolean isCetakResi = true;
+                                                        while (isCetakResi) {
+                                                            System.out.printf("======================================================%n");
+                                                            System.out.printf("                Lihat Pengiriman                    %n");
+                                                            System.out.println("=============================================================");
+                                                            System.out.printf("%-5s|%-15s|%-15s|%-15s|%-15s\n", "Id Pengiriman", "Nama Pengirim", "Nama Penerima", "Tanggal Kirim", "Status Paket");
+                                                            System.out.println("=============================================================");
+                                                            for (String[] kirim : pengiriman) {
+                                                                System.out.printf("%-5s|%-15s|%-15s|%-15s|%-5s\n", kirim[0], kirim[1], kirim[2], kirim[3], kirim[6]);
+                                                            }
+                                                            System.out.println("=============================================================");
+                                                            input.nextInt();
+
+                                                        }
+                                                        break;
+                                                    case "3":
+                                                        System.out.println("ganti status paket");
+                                                        break;
+                                                    case "4":
+                                                        isCrudPengiriman = false;
+                                                    default:
+                                                        System.out.println("\nInput Menu tidak valid\n");
+                                                        break;
+                                                }
+                                            }
+                                        break;
+                                        case "2":
+                                            boolean isLacakPengiriman = true;
+                                            System.out.print("\033[H\033[2J");
+                                            while (isLacakPengiriman) {
+                                                System.out.print("\033[H\033[2J");
+                                                System.out.println("tampil data");
+                                                System.out.println("masukan id");
+                                                System.out.println("tampil lokasi");
+                                            }
+                                        break;
+                                        case "3":
+                                            boolean isLokasiTujuan = true;
+                                            System.out.print("\033[H\033[2J");
+                                            while (isLokasiTujuan) {
+                                                System.out.print("\033[H\033[2J");
+                                                System.out.println("Menu Manajemen Lokasi Tujuan\n1. Input Data Lokasi\n2. Edit Data Lokasi\n3. Hapus Data Lokasi\n4. Back");
+
+                                                System.out.print("Pilih Menu Manajemen Lokasi Tujuan ? (1-3)");
+                                                String PilihMenuLokasiTujuan = input.nextLine();
+
+                                                switch (PilihMenuLokasiTujuan) {
+                                                    case "1":
+                                                        System.out.println("input data lokasi");
+                                                        break;
+                                                    case "2":
+                                                        System.out.println("edit data lokasi");
+                                                        break;
+                                                    case "3":
+                                                        System.out.println("hapus data lokasi");
+                                                        break;
+                                                    case "4":
+                                                        isLokasiTujuan = false;
+                                                        break;
+                                                    default:
+                                                        System.out.println("\nInput Menu tidak valid\n");
+                                                        break;
+                                                }
+                                            }
+                                        case "4":
+                                            isManagePengiriman = false;
+                                        break;
+                                        default:
+                                            System.out.println("\nInput Menu tidak valid\n");
+                                        break;
+                                    }
+                                }
                                 break;
                             case "3":
                                 System.out.println("Laporan Pengiriman");
@@ -166,7 +382,6 @@ public class Pengiriman {
                             case "5":
                                 isLoginAdmin = false;
                                 checkRole = false;
-
                                 break;
                             default:
                                 System.out.println("\nInput Menu tidak valid\n");
@@ -176,7 +391,9 @@ public class Pengiriman {
                 } else if (pilih.equalsIgnoreCase("2")) {
                     boolean isLoginPetugas = false;
                     System.out.print("\033[H\033[2J");
+                    isLogin = true;
                     while (isLogin) {
+                        System.out.print("\033[H\033[2J");
                         System.out.println("Login Petugas");
                         System.out.print("Username: ");
                         username = input.nextLine();
@@ -184,17 +401,17 @@ public class Pengiriman {
                         password = input.nextLine();
                 
                         for (int j = 0; j < userPetugas.length; j++) {
-                            if (
-                                username.equals(userPetugas[j][0]) &&
-                                password.equals(userPetugas[j][1])
-                            ) {
+                            if (username.equals(userPetugas[j][2]) && password.equals(userPetugas[j][3])) {
                                 isLogin = false;
                                 isLoginPetugas = true;
                                 break;
                             } else {
                                 isLogin = true;
+                                System.out.println("\nUsername atau Password yang anda masukkan salah\n");
+                                break;
                             }
                         }
+
                     }
 
                     while (isLoginPetugas) {
