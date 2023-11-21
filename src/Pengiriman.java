@@ -442,7 +442,104 @@ public class Pengiriman {
 
                         switch (PilihMenuDataPengiriman) {
                           case "1":
-                            System.out.println("input data pengiriman");
+                            boolean isTambahPaket = true;
+                            // while (isTambahPaket) {
+                                for (int i = 0; i < malang.length; i++) {
+                                  System.out.println(
+                                    (i + 1) + ". " + malang[i][0]
+                                  );
+                                }
+                                System.out.print("Pilih kota tujuan (nomor): ");
+                                int kotaInput = angka.nextInt();
+                              System.out.println("input data pengiriman");
+                              System.out.println("Masukkan ID Pengiriman");
+                              pengiriman[0][0] = input.nextLine();
+                              System.out.println("Masukkan Nama pengirim");
+                              pengiriman[0][1] = input.nextLine();
+                              System.out.println(" MAsukkan Nama penerima");
+                              pengiriman[0][2] = input.nextLine();
+                              System.out.println(
+                                "Masukkan asal pengirim(malang)"
+                              );
+                              System.out.println("Masukkan tujuan pengirim");
+                              pengiriman[0][8] = input.nextLine();
+                              System.out.println("Masukkan alamat pengiriman");
+                              pengiriman[0][5] = input.nextLine();
+                              System.out.println("Masukkan tanggal pengiriman");
+                              pengiriman[0][3] = input.nextLine();
+                              System.out.println("Masukkan Status pengiriman");
+                              pengiriman[0][3] = input.nextLine();
+
+
+                              System.out.println("\nJenis layanan:");
+                              System.out.println("1. Hemat");
+                              System.out.println("2. Regular");
+                              System.out.println("3. Express");
+                              int jenisLayanan = angka.nextInt();
+
+                              int i = kotaInput - 1;
+                              String tujuan = malang[i][0];
+                              double harga = 0.0;
+
+                              if (jenisLayanan >= 1 && jenisLayanan <= 3) {
+                                switch (jenisLayanan) {
+                                  case 1:
+                                    harga = Double.parseDouble(malang[i][1]);
+                                    break;
+                                  case 2:
+                                    harga = Double.parseDouble(malang[i][2]);
+                                    break;
+                                  case 3:
+                                    harga = Double.parseDouble(malang[i][3]);
+                                    break;
+                                }
+
+                                System.out.print(
+                                  "Masukkan berat barang (kg): "
+                                );
+                                double berat = angka.nextDouble();
+                                pengiriman[0][7] = Double.toString(berat);
+
+                                double totalBiaya = harga * berat;
+                                System.out.println();
+                                // sout data pengiriman (struk)
+                                System.out.println();
+                                 System.out.println(" data pengiriman");
+                              System.out.println(" ID Pengiriman");
+                              System.out.println(pengiriman[0][0]);
+                              
+                              System.out.println(" Nama pengirim");
+                              System.out.println(pengiriman[0][1]);
+                              
+                              System.out.println("  Nama penerima");
+                              System.out.println(pengiriman[0][2]);
+                              System.out.println(
+                                  "pengirim(malang)"
+                                  );
+                                  System.out.println(" tujuan pengirim");
+                                  System.out.println(pengiriman[0][8]);
+                                  System.out.println(" alamat pengiriman");
+                                  System.out.println(pengiriman[0][5]);
+                                  System.out.println(" tanggal pengiriman");
+                                  System.out.println(pengiriman[0][3]);
+                                  System.out.println(" Status pengiriman");
+                                  System.out.println(pengiriman[0][6]);
+                                System.out.println(
+                                  "\nBiaya untuk perjalanan ke " +
+                                  tujuan +
+                                  " dengan layanan jenis " +
+                                  jenisLayanan +
+                                  " untuk berat " +
+                                  berat +
+                                  " kg adalah: " +
+                                  totalBiaya
+                                );
+                              } else {
+                                System.out.println(
+                                  "Pilihan jenis layanan tidak valid"
+                                );
+                            //   }
+                            }
                             break;
                           case "2":
                             boolean isCetakResi = true;
